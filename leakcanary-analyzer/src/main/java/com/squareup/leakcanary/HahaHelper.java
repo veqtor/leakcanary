@@ -79,6 +79,7 @@ public final class HahaHelper {
 
     Integer count = fieldValue(values, "count");
     Object value = fieldValue(values, "value");
+
     Integer offset;
     ArrayInstance charArray;
     if (isCharArray(value)) {
@@ -105,7 +106,8 @@ public final class HahaHelper {
         charArray = (ArrayInstance) inlineInstance;
         offset = 0;
       } else {
-        throw new UnsupportedOperationException("Could not find char array in " + instance);
+        // if there is no char array, this was an empty string.
+        return "";
       }
     }
     checkNotNull(count, "count");

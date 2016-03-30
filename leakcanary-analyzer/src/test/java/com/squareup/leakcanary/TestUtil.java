@@ -17,8 +17,11 @@ package com.squareup.leakcanary;
 
 import java.io.File;
 import java.net.URL;
+import java.util.List;
 
 final class TestUtil {
+
+  public static final ExcludedRefs NO_EXCLUDED_REFS = ExcludedRefs.builder().build();
 
   enum HeapDumpFile {
     ASYNC_TASK("leak_asynctask.hprof", "dc983a12-d029-4003-8890-7dd644c664c5"),
@@ -30,8 +33,8 @@ final class TestUtil {
     SERVICE_BINDER_IGNORED("leak_service_binder_ignored.hprof",
         "6e524414-9581-4ce7-8690-e8ddf8b82454"),;
 
-    private final String filename;
-    private final String referenceKey;
+    public final String filename;
+    public final String referenceKey;
 
     HeapDumpFile(String filename, String referenceKey) {
       this.filename = filename;
@@ -44,6 +47,12 @@ final class TestUtil {
     ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
     URL url = classLoader.getResource(filename);
     return new File(url.getPath());
+  }
+
+  static List<TrackedReference> findTrackedReferences(HeapDumpFile heapDumpFile) {
+    File file = fileFromName(heapDumpFile.filename);
+    HeapAnalyzer heapAnalyzer = new HeapAnalyzer(NO_EXCLUDED_REFS);
+    return heapAnalyzer.findTrackedReferences(file);
   }
 
   static AnalysisResult analyze(HeapDumpFile heapDumpFile, ExcludedRefs.BuilderWithParams excludedRefs) {
