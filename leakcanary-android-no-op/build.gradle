@@ -11,9 +11,11 @@ apply plugin: 'com.android.library'
 
 repositories {
   mavenCentral()
+  maven { url "https://jitpack.io" }
 }
 
 dependencies {
+  compile 'com.github.jitpack:gradle-simple:1.0'
 }
 
 android {
