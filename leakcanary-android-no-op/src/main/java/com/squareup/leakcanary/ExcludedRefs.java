@@ -16,8 +16,6 @@
 package com.squareup.leakcanary;
 
 import java.io.Serializable;
-import java.util.LinkedHashMap;
-import java.util.Map;
 /**
  * Prevents specific references from being taken into account when computing the shortest reference
  * path from a suspected leaking instance to the GC roots.
@@ -65,14 +63,6 @@ public final class ExcludedRefs implements Serializable {
     }
 
     public static final class BuilderWithParams implements Builder {
-
-        private final Map<String, Map<String, ParamsBuilder>> fieldNameByClassName =
-                new LinkedHashMap<>();
-        private final Map<String, Map<String, ParamsBuilder>> staticFieldNameByClassName =
-                new LinkedHashMap<>();
-        private final Map<String, ParamsBuilder> threadNames = new LinkedHashMap<>();
-        private final Map<String, ParamsBuilder> classNames = new LinkedHashMap<>();
-        private final Map<String, ParamsBuilder> rootClassNames = new LinkedHashMap<>();
 
         private ParamsBuilder lastParams;
 
