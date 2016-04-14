@@ -8,6 +8,8 @@ buildscript {
 }
 
 apply plugin: 'com.android.library'
+apply plugin: 'maven'
+
 
 repositories {
   mavenCentral()
@@ -15,7 +17,6 @@ repositories {
 }
 
 dependencies {
-  compile 'com.github.jitpack:gradle-simple:1.0'
 }
 
 android {
