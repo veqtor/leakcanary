@@ -1,6 +1,6 @@
 # LeakCanary NO-OP Extended
 
-[![Release](https://jitpack.io/v/veqtor/leakcanary.svg)](https://jitpack.io/#Veqtor/leakcanary)
+[![Release](https://jitpack.io/v/veqtor/leakcanary-android-no-op-extended.svg)](https://jitpack.io/#Veqtor/leakcanary-android-no-op-extended)
 
 A memory leak detection library for Android and Java.
 
